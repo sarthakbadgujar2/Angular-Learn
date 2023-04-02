@@ -28,6 +28,9 @@ import { NavComponent } from './nav/nav.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
 import { RoomsAddComponent } from './rooms/rooms-add/rooms-add.component';
+import { LoginComponent } from './login/login.component';
+import { HoverDirective } from './hover.directive';
+import { EmailvalidatorDirective } from './emailvalidator.directive';
 
 function initFactory(initService: InitService) {
   return () => initService.init()
@@ -44,6 +47,9 @@ function initFactory(initService: InitService) {
     NotfoundComponent,
     RoomsBookingComponent,
     RoomsAddComponent,
+    LoginComponent,
+    HoverDirective,
+    EmailvalidatorDirective,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +67,8 @@ function initFactory(initService: InitService) {
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    FormsModule
   ],
   providers: [{ provide: APP_SERVICE_CONFIG, useValue: APP_CONFIG }, {
     provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true

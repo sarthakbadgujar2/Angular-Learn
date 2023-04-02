@@ -1,1 +1,51 @@
-<p>rooms-add works!</p>
+{{ roomsForm.pristine| json }}
+{{ roomsForm.dirty| json }}
+{{ roomsForm.valid| json }}
+{{ roomsForm.invalid| json }}
+{{ roomsForm.value| json }}
+
+
+
+
+<div *ngIf="successMessage != ''" class="alert alert-success">
+    {{ successMessage }}
+</div>
+<form #roomsForm="ngForm" (ngSubmit)="AddRoom(roomsForm)">
+    <div class="form-group">
+        <input class="form-control" type="text" name="roomType" [(ngModel)]="room.roomType" placeholder="Room Type"
+            required>
+    </div>
+    <div class="form-group">
+        <input #roomamenities="ngModel" class="form-control" type="text" name="amenities" [(ngModel)]="room.amenities"
+            placeholder="Amenities" required minlength="5" maxlength="20">
+        <div class="alert alert-danger" *ngIf="roomamenities.errors?.['minlength']">
+            Ammenities should be min 5 chars
+        </div>
+        <div class="alert alert-danger" *ngIf="roomamenities.errors?.['required']">
+            Please provide the Ammenities
+        </div>
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="number" name="price" [(ngModel)]="room.price" placeholder="Price Per night"
+            required>
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="photos" [(ngModel)]="room.photos"
+            placeholder="Photos (Provide link)" required>
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="datetime" name="checkinTime" [(ngModel)]="room.checkInTime"
+            placeholder="Check-in Time" required>
+    </div>
+    <div>
+        <input class="form-control" type="datetime" name="checkoutTime" [(ngModel)]="room.checkOutTime"
+            placeholder="Check-out Time" required>
+    </div>
+    <div>
+        <input #roomrating min="1" max="5" class="form-control" type="number" name="rating" [(ngModel)]="room.rating"
+            placeholder="Rating">
+    </div>
+    <div>
+        <button [disabled]="roomsForm.invalid" class="btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>

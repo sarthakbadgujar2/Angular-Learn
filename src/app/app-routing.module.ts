@@ -5,12 +5,16 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { ContainerComponent } from './container/container.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
+import { RoomsAddComponent } from './rooms/rooms-add/rooms-add.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/rooms', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'employee', component: EmployeeComponent },
   { path: 'rooms', component: RoomsComponent },
+  { path: "rooms/add", component: RoomsAddComponent },
   { path: 'rooms/:roomid', component: RoomsBookingComponent },
+  { path: 'login', component: LoginComponent },
   { path: '**', component: NotfoundComponent }
 ];
 
