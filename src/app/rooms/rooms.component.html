@@ -1,0 +1,42 @@
+<app-header></app-header>
+
+<!-- <app-header></app-header> -->
+<!-- <app-header></app-header>
+<app-header></app-header>
+<app-header></app-header> -->
+<h1>
+    <h3>{{ rooms$ | async | json }}</h3>
+
+    <h3>{{ getError$ | async }}</h3>
+
+    <h3>{{ roomsCount$ | async }}</h3>
+</h1>
+
+
+<h1>Welcome to {{hotelName}}</h1>
+<div [hidden]="hideRooms">
+    Number of Rooms:
+    <div [ngStyle]="{'color' : rooms.availableRooms > 0 ? 'green' : 'red'}" [innerText]="noOfRooms">
+
+    </div>
+</div>
+
+{{ rooms?.availableRooms ?? 'No Rooms' }}
+<div *ngIf="selectedRoom">
+    {{ selectedRoom| json }}
+</div>
+
+
+<div *ngIf="rooms.availableRooms > 0">
+    <app-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)" [title]="title"></app-rooms-list>
+</div>
+<button (click)="toggle()">Toggle</button>
+<br>
+<button (click)="addRoom()"> Add Room</button>
+<br>
+<button (click)="editRoom()">Update Room</button>
+<br>
+<button (click)="deleteRoom()">Delete Room</button>
+
+<br>
+<h1>{{ totalBytes }} Loaded </h1>
